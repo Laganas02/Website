@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
+    <div id="header">
+        <h1>Your Library</h1>
+    </div>
+
+    <!-- Library Section -->
     <section id="library">
         <h2>Your Library</h2>
         <div class="tabs">
@@ -14,30 +20,44 @@
             <button onclick="showSection('reading-list')">Reading List</button>
         </div>
 
+        <!-- Currently Reading Section -->
         <div id="current">
             <h3>Currently Reading</h3>
-            <!-- Example of a current book -->
-            <div class="book-card">
-                <img src="cover1.jpg" alt="Book Cover">
-                <h3>Current Book Title</h3>
+            <div class="carousel">
+                <div class="carousel-item">
+                    <img src="cover1.jpg" alt="Book Cover">
+                    <h4>Current Book Title</h4>
+                </div>
+                <div class="carousel-item">
+                    <img src="cover2.jpg" alt="Book Cover">
+                    <h4>Another Book Title</h4>
+                </div>
+                <!-- Add more items as needed -->
             </div>
         </div>
 
+        <!-- Reading List Section -->
         <div id="reading-list" style="display: none;">
             <h3>Your Reading List</h3>
-            <!-- Example of a book in the reading list -->
-            <div class="book-card">
-                <img src="cover2.jpg" alt="Book Cover">
-                <h3>Reading List Book</h3>
+            <div class="carousel">
+                <div class="carousel-item">
+                    <img src="cover3.jpg" alt="Book Cover">
+                    <h4>Reading List Book 1</h4>
+                </div>
+                <div class="carousel-item">
+                    <img src="cover4.jpg" alt="Book Cover">
+                    <h4>Reading List Book 2</h4>
+                </div>
+                <!-- Add more items as needed -->
             </div>
         </div>
     </section>
 
-    <script>
-        function showSection(section) {
-            document.getElementById('current').style.display = section === 'current' ? 'block' : 'none';
-            document.getElementById('reading-list').style.display = section === 'reading-list' ? 'block' : 'none';
-        }
-    </script>
+    <!-- Footer -->
+    <div id="footer">
+        <p>&copy; 2024 Your Library. All rights reserved.</p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

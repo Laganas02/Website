@@ -5,7 +5,9 @@ const headerHTML = `
 <header>
 <div class="navbar">
             <div class="logo">
+                <a href="home.html">
                 <img src="logo.png" alt="Logo">
+                </a>
             </div>
             <div class="nav-links">
                 <div class="dropdown">
@@ -38,9 +40,9 @@ const headerHTML = `
                 <div class="dropdown">
                     <a href="#">Profile</a>
                     <div class="dropdown-content">
-                        <a href="#">My Profile</a>
+                        <a href="MyProfile.html">My Profile</a>
+                        <a href="library.html">Library</a>
                         <a href="#">Inbox</a>
-                        <a href="#">Library</a>
                         <a href="#">Notifications</a>
                         <a href="#">Language: English</a>
                         <a href="#">Settings</a>
@@ -87,3 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
         searchBar.addEventListener("input", performSearch);
     }
 });
+
+//library
+function showSection(section) {
+    document.getElementById('current').style.display = section === 'current' ? 'block' : 'none';
+    document.getElementById('reading-list').style.display = section === 'reading-list' ? 'block' : 'none';
+}
