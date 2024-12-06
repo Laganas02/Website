@@ -14,17 +14,10 @@
         <input type="text" id="search-bar" placeholder="Search for books..." oninput="performSearch()">
         <div id="search-results"></div>
     </section>
+    <!-- Footer -->
+    <div id="footer"></div>
 
-    <script>
-        function performSearch() {
-            const query = document.getElementById("search-bar").value;
-            if (query.length > 0) {
-                // For simplicity, let's just show a static message (ideally you'd make a request to the server)
-                document.getElementById("search-results").innerHTML = `<p>Searching for: ${query}</p>`;
-            } else {
-                document.getElementById("search-results").innerHTML = "";
-            }
-        }
-    </script>
+
+    <script src="script.js"></script>
 </body>
 </html>
