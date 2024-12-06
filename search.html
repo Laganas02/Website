@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Books</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <div id="header"></div>
+    <!-- search -->
+    <section id="search">
+        <input type="text" id="search-bar" placeholder="Search for books..." oninput="performSearch()">
+        <div id="search-results"></div>
+    </section>
+
+    <script>
+        function performSearch() {
+            const query = document.getElementById("search-bar").value;
+            if (query.length > 0) {
+                // For simplicity, let's just show a static message (ideally you'd make a request to the server)
+                document.getElementById("search-results").innerHTML = `<p>Searching for: ${query}</p>`;
+            } else {
+                document.getElementById("search-results").innerHTML = "";
+            }
+        }
+    </script>
+</body>
+</html>

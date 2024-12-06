@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="library">
+        <h2>Your Library</h2>
+        <div class="tabs">
+            <button onclick="showSection('current')">Currently Reading</button>
+            <button onclick="showSection('reading-list')">Reading List</button>
+        </div>
+
+        <div id="current">
+            <h3>Currently Reading</h3>
+            <!-- Example of a current book -->
+            <div class="book-card">
+                <img src="cover1.jpg" alt="Book Cover">
+                <h3>Current Book Title</h3>
+            </div>
+        </div>
+
+        <div id="reading-list" style="display: none;">
+            <h3>Your Reading List</h3>
+            <!-- Example of a book in the reading list -->
+            <div class="book-card">
+                <img src="cover2.jpg" alt="Book Cover">
+                <h3>Reading List Book</h3>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showSection(section) {
+            document.getElementById('current').style.display = section === 'current' ? 'block' : 'none';
+            document.getElementById('reading-list').style.display = section === 'reading-list' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>
