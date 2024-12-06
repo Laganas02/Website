@@ -7,8 +7,9 @@
 
 /* Body and Font */
 body {
+    color: #333333;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #fce5cd, #f9cb9c, #e69138, #b45f06);
 }
 
 /* Header */
@@ -193,8 +194,9 @@ footer {
 
 /* Body and Font */
 body {
+    color: #333333;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom, #fce5cd, #f9cb9c, #e69138, #b45f06);
 }
 
 /* Form Container */
