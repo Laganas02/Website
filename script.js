@@ -6,7 +6,7 @@ const headerHTML = `
 <div class="navbar">
             <div class="logo">
                 <a href="home.html">
-                <img src="logo.png" alt="Logo">
+                <img src="image/logo.png" alt="Logo">
                 </a>
             </div>
             <div class="nav-links">
@@ -62,36 +62,70 @@ const footerHTML = `
 
 // Function to inject the header and footer HTML
 function loadHeaderAndFooter() {
-    document.getElementById('header').innerHTML = headerHTML;
-    document.getElementById('footer').innerHTML = footerHTML;
+  document.getElementById("header").innerHTML = headerHTML;
+  document.getElementById("footer").innerHTML = footerHTML;
 }
-
+// Search Page
 // Perform search functionality
 function performSearch() {
-    const query = document.getElementById("search-bar").value;
-    const resultsContainer = document.getElementById("search-results");
+  const query = document.getElementById("search-bar").value;
+  const resultsContainer = document.getElementById("search-results");
 
-    if (query.trim()) {
-        resultsContainer.innerHTML = `<p>Searching for: ${query}</p>`;
-    } else {
-        resultsContainer.innerHTML = "";
-    }
+  if (query.trim()) {
+    resultsContainer.innerHTML = `<p>Searching for: ${query}</p>`;
+  } else {
+    resultsContainer.innerHTML = "";
+  }
 }
 
 // Initialize page-specific functionality
 document.addEventListener("DOMContentLoaded", () => {
-    // Inject header and footer HTML
-    loadHeaderAndFooter();
+  // Inject header and footer HTML
+  loadHeaderAndFooter();
 
-    // Add search functionality if the search bar is present
-    const searchBar = document.getElementById("search-bar");
-    if (searchBar) {
-        searchBar.addEventListener("input", performSearch);
-    }
+  // Add search functionality if the search bar is present
+  const searchBar = document.getElementById("search-bar");
+  if (searchBar) {
+    searchBar.addEventListener("input", performSearch);
+  }
 });
+
+// Array of book titles
+const randomBookTitles = [
+  "Training to Love",
+  "A Different Virus",
+  "Anna Karenina",
+  "Oh My Ice Goddess",
+  "What's at Stake",
+  "Bully Stepbrother",
+  "Happy Memorials",
+  "Serenity: Love",
+  "Royal Elders",
+  "Rich Girl",
+  "Alpha Dylan",
+  "I Miss You Too",
+  "I Hate You Too",
+  "Under the Sky of Diamonds",
+  "The Mysterious Salvation",
+  "Money Isn't Everything...",
+  "Rich Bae, Rich Love",
+];
+
+function pickRandomBook(elementId) {
+  const randomIndex = Math.floor(Math.random() * randomBookTitles.length);
+  document.getElementById(elementId).textContent =
+    randomBookTitles[randomIndex];
+}
+
+// Generate random book titles for each carousel item
+for (let i = 1; i <= 6; i++) {
+  pickRandomBook(`random-book-${i}`);
+}
 
 //library
 function showSection(section) {
-    document.getElementById('current').style.display = section === 'current' ? 'block' : 'none';
-    document.getElementById('reading-list').style.display = section === 'reading-list' ? 'block' : 'none';
+  document.getElementById("current").style.display =
+    section === "current" ? "block" : "none";
+  document.getElementById("reading-list").style.display =
+    section === "reading-list" ? "block" : "none";
 }
