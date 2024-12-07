@@ -82,7 +82,6 @@ header .navbar a {
     background-color: #FAF3E0;
 }
 
-/* home */
 /* Main Content */
 section {
     padding: 20px;
@@ -130,7 +129,7 @@ footer {
     margin-top: 30px;
 }
 
-/* search page */
+/* Search Page */
 #search {
     display: flex;
     justify-content: center;
@@ -194,11 +193,68 @@ footer {
     transition: transform 0.2s ease-in-out;
 }
 
-/* Adjusting for the footer */
-#footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #7D5A50;
-    color: #F0D9C1;
-    margin-top: 30px;
+/* Sidebar for Profile */
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 300px; /* Sidebar width */
+    background-color: #F5E8DA;
+    padding: 20px;
+    border-radius: 8px;
+    position: fixed;
+    right: 20px;
+    top: 100px; /* Adjust based on your header height */
+}
+
+#about-user {
+    margin-bottom: 20px;
+}
+
+#about-user h2 {
+    color: #4A4A4A;
+}
+
+#about-user p {
+    font-size: 16px;
+    color: #7D5A50;
+}
+
+#reading-list, #authored-books {
+    margin-bottom: 20px;
+}
+
+#reading-list h3, #authored-books h3 {
+    color: #7D5A50;
+}
+
+.carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    padding: 10px 0;
+}
+
+.carousel-item {
+    width: 100%;
+    max-width: 200px;
+    height: 300px;
+    background-color: #E5B78A;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #4A4A4A;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
 }

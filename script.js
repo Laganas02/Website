@@ -32,8 +32,8 @@ const headerHTML = `
                 <div class="dropdown">
                     <a href="#">Write</a>
                     <div class="dropdown-content">
-                        <a href="#">Create a new story</a>
-                        <a href="#">My stories</a>
+                        <a href="write_newStory.html">Create a new story</a>
+                        <a href="write_myStory.html">My stories</a>
                     </div>
                 </div>
                 <div class="dropdown">
