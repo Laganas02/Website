@@ -135,20 +135,70 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15vh; /* Full height of the viewport */
+    height: 15vh; 
     text-align: center;
 }
 
 #search-bar {
-    width: 50%; /* Make the search bar half the width of the page */
+    width: 50%; 
     padding: 15px;
-    font-size: 1.5rem; /* Increase the font size for better visibility */
+    font-size: 1.5rem; 
     border-radius: 5px;
     border: 2px solid #ccc;
     outline: none;
-    box-sizing: border-box; /* Include padding in width calculation */
+    box-sizing: border-box; 
 }
 
 #search-results {
     margin-top: 20px;
+}
+
+/* Romance Page Specific Styles */
+#books-list .books-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#books-list .books-list h2 {
+    text-align: center;
+    color: #333;
+}
+
+.carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+    padding: 10px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    width: 200px;
+    height: 300px;
+    background-color: #E5B78A;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: #4A4A4A;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Adjusting for the footer */
+#footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #7D5A50;
+    color: #F0D9C1;
+    margin-top: 30px;
 }

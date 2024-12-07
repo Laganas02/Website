@@ -9,26 +9,25 @@ const headerHTML = `
                 <img src="image/logo.png" alt="Logo">
                 </a>
             </div>
-            <div class="nav-links">
-                <div class="dropdown">
-                    <a href="#">Browse</a>
-                    <div class="dropdown-content">
-                        <div class="dropdown-column">
-                            <a href="#">Romance</a>
-                            <a href="#">Fanfiction</a>
-                            <a href="#">Historical</a>
-                            <a href="#">Humor</a>
-                            <a href="#">Non-Fiction</a>
-                            <a href="#">Horror</a>
-                            <a href="#">Mystery</a>
-                            <a href="#">Poetry</a>
-                            <a href="#">Fantasy</a>
-                            <a href="#">Teenfiction</a>
-                            <a href="#">Matured</a>
-                            <a href="#">Thriller</a>
-                        </div>
+             <div class="dropdown">
+                <a href="#">Browse</a>
+                <div class="dropdown-content">
+                    <div class="dropdown-column">
+                        <a href="genre_romance.html">Romance</a>
+                        <a href="genre_fanfiction.html">Fanfiction</a>
+                        <a href="genre_historical.html">Historical</a>
+                        <a href="genre_humor.html">Humor</a>
+                        <a href="genre_non-fiction.html">Non-Fiction</a>
+                        <a href="genre_horror.html">Horror</a>
+                        <a href="genre_mystery.html">Mystery</a>
+                        <a href="genre_poetry.html">Poetry</a>
+                        <a href="genre_fantasy.html">Fantasy</a>
+                        <a href="genre_teenfiction.html">Teenfiction</a>
+                        <a href="genre_matured.html">Matured</a>
+                        <a href="genre_thriller.html">Thriller</a>
                     </div>
                 </div>
+            </div>
                 <a href="search.html">Search</a>
                 <div class="dropdown">
                     <a href="#">Write</a>
@@ -128,4 +127,20 @@ function showSection(section) {
     section === "current" ? "block" : "none";
   document.getElementById("reading-list").style.display =
     section === "reading-list" ? "block" : "none";
+}
+
+// browse
+function showBooks(genre) {
+  // Example data, in practice this would be fetched from a server
+  const booksData = {
+    Romance: ["Story 1", "Story 2", "Story 3", "Story 4"],
+    Fanfiction: ["Story A", "Story B", "Story C"],
+    Historical: ["Story X", "Story Y"],
+    // Add more genres and their respective stories here
+  };
+
+  const booksList = document.getElementById("books-list");
+  booksList.innerHTML = `<h2>${genre} Stories</h2><ul>${booksData[genre]
+    .map((book) => `<li>${book}</li>`)
+    .join("")}</ul>`;
 }
