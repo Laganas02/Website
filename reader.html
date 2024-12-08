@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+/* Reset default margin and padding */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Main header (fixed at top) */
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ccc;
+    z-index: 500;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Secondary header (positioned below main header) */
+#secondary-header {
+    background-color: #f8b4c0;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 150px; /* Adjusted to be below the main header */
+    width: 100%;
+    z-index: 999;
+}
+
+#secondary-header h1 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+#menu-toggle {
+    font-size: 1.5em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    top: 180px; /* Adjusted based on header heights */
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #f8b4c0;
+    color: #fff;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    padding-top: 20px;
+    transition: left 0.3s ease;
+}
+
+/* Content section */
+#content {
+    margin-top: 200px; /* Adjusted to ensure content starts below the headers */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+#chapter-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    top: 200px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+#chapter-content p {
+    text-indent: 50px;
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+/* Navigation buttons */
+.navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.navigation button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #f8b4c0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+
+.navigation button:hover {
+    background-color: #e89aa8;
+}
+
+.navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Your global website header -->
+    <div id="header"></div>
+    <!-- Secondary header for the sidebar -->
+    <div id="secondary-header">
+        <button id="menu-toggle">☰</button>
+        <h1 id="title"></h1>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <!-- Close button (X) -->
+        <button id="close-btn">X</button>
+        <ul id="chapter-list"></ul>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+        <div id="chapter-title"></div>
+        <div id="chapter-content"></div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button id="prev">Previous Chapter</button>
+        <button id="next" disabled>Next Chapter</button>
+    </div>
+
+    <script>
+        // Variables
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookName = urlParams.get('book');
+        let currentChapter = 1;
+        const sidebar = document.getElementById('sidebar');
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeBtn = document.getElementById('close-btn');
+        const nextButton = document.getElementById('next');
+        const prevButton = document.getElementById('prev');
+
+        // Set book title
+        if (bookName) {
+    document.getElementById('title').textContent = bookName.replace(/_/g, ' ');
+} else {
+    document.getElementById('content').innerHTML = '<p>Error: Book not specified. Please check the URL.</p>';
+    console.error('Error: Book parameter is missing in the URL.');
+}
+
+
+
+        // Toggle sidebar
+        menuToggle.addEventListener('click', () => {
+            sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+        });
+
+        // Close sidebar on "X" button click
+        closeBtn.addEventListener('click', () => {
+            sidebar.style.left = '-250px'; // Close the sidebar
+        });
+
+        // Load chapter
+        async function loadChapter(chapter) {
+    const chapterTitle = document.getElementById('chapter-title');
+    const chapterContent = document.getElementById('chapter-content');
+    try {
+        const filePath = `book/${bookName}/chapter${chapter}.txt`; // Fix file path
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`Chapter ${chapter} not found`); // Graceful error handling
+        const text = await response.text();
+
+                // Display the content inside a <pre> tag to preserve formatting
+                    chapterTitle.textContent = `Chapter ${chapter}`;
+        chapterContent.innerHTML = `<pre>${text}</pre>`;
+
+        // Scroll to the top after chapter is loaded
+        window.scrollTo(0, 0);
+
+        // Update the navigation buttons based on chapter existence
+        updateNavigationButtons(chapter);
+    } catch (err) {
+        chapterTitle.textContent = 'Error';
+        chapterContent.innerHTML = `<p>${err.message}</p>`;
+        console.error(err);
+    }
+}
+
+
+
+async function updateNavigationButtons(chapter) {
+    const nextChapterFile = `book/${bookName}/chapter${chapter + 1}.txt`;
+    const prevChapterFile = `book/${bookName}/chapter${chapter - 1}.txt`;
+
+    try {
+        // Check if the next chapter exists
+        const nextResponse = await fetch(nextChapterFile, { method: 'HEAD' });
+        nextButton.disabled = !nextResponse.ok;
+
+        // Check if the previous chapter exists
+        prevButton.disabled = chapter <= 1;
+    } catch (err) {
+        console.error(err);
+        nextButton.disabled = true;
+        prevButton.disabled = true;
+    }
+}
+
+
+        // Load chapter list
+async function loadChapterList() {
+    const chapterList = document.getElementById('chapter-list');
+    for (let i = 1; i <= 50; i++) { // Adjust chapter count as needed
+        const filePath = `book/${bookName}/chapter${i}.txt`; // Fixed path
+        try {
+            const response = await fetch(filePath, { method: 'HEAD' });
+            if (response.ok) {
+                // Create list item for chapter
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="#" onclick="changeChapter(${i})">Chapter ${i}</a>`;
+                chapterList.appendChild(li);
+            } else {
+                // Stop if a chapter file doesn't exist
+                break;
+            }
+        } catch (err) {
+            console.error(`Error checking chapter ${i}:`, err);
+            break;
+        }
+    }
+}
+
+
+        // Change chapter via sidebar
+        function changeChapter(chapter) {
+            currentChapter = chapter;
+            loadChapter(currentChapter);
+            sidebar.style.left = '-250px'; // Close sidebar after selecting
+        }
+
+        // Navigation buttons
+        prevButton.addEventListener('click', () => {
+            if (currentChapter > 1) {
+                currentChapter--;
+                loadChapter(currentChapter);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            currentChapter++;
+            loadChapter(currentChapter);
+        });
+
+        // Close the sidebar if clicking anywhere outside of the sidebar or menu button
+        window.addEventListener('click', (event) => {
+            if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                sidebar.style.left = '-250px'; // Close sidebar if click is outside
+            }
+        });
+
+        // Initial load
+        if (bookName) {
+            loadChapter(currentChapter);
+            loadChapterList();
+        } else {
+            document.getElementById('content').innerHTML = '<p>Error: Book not specified. Please check the URL.</p>';
+        }
+    </script>
+
+   <!-- Footer -->
+   <div id="footer"></div>
+
+   <script src="script.js"></script>
+</body>
+</html>
