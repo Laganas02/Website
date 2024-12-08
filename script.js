@@ -45,7 +45,7 @@ const headerHTML = `
                         <a href="#">Notifications</a>
                         <a href="#">Language: English</a>
                         <a href="#">Settings</a>
-                        <a href="#">Logout</a>
+                        <a href="login.html">Logout</a>
                     </div>
                 </div>
             </div>
