@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function redirectToLogin(event) {
+            event.preventDefault(); // Prevent default form submission
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    </script>
 </head>
 <body>
-    <div class="signup-container">
-        <h2>Sign Up</h2>
-        <form action="#">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
-            <button type="submit">Sign Up</button>
-        </form>
-        <p>Already have an account? <a href="login.html">Log in</a></p>
+    <div class="auth-container">
+        <div class="auth-box">
+            <h2>Sign Up</h2>
+            <form onsubmit="redirectToLogin(event)">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+                <div>
+                    <a href="login.html">Do you have an account? Log In</a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
