@@ -14,17 +14,12 @@ const headerHTML = `
                 <div class="dropdown-content">
                     <div class="dropdown-column">
                         <a href="genre_romance.html">Romance</a>
-                        <a href="genre_fanfiction.html">Fanfiction</a>
-                        <a href="genre_historical.html">Historical</a>
-                        <a href="genre_humor.html">Humor</a>
                         <a href="genre_non-fiction.html">Non-Fiction</a>
                         <a href="genre_horror.html">Horror</a>
                         <a href="genre_mystery.html">Mystery</a>
                         <a href="genre_poetry.html">Poetry</a>
-                        <a href="genre_fantasy.html">Fantasy</a>
                         <a href="genre_teenfiction.html">Teenfiction</a>
                         <a href="genre_Psychology.html">Psychology</a>
-                        <a href="genre_thriller.html">Thriller</a>
                     </div>
                 </div>
             </div>
@@ -144,3 +139,12 @@ function showBooks(genre) {
     .map((book) => `<li>${book}</li>`)
     .join("")}</ul>`;
 }
+
+function toggleMenu() {
+  const menu = document.getElementById('hamburger-content');
+  menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+}
+document.getElementById('hamburger').addEventListener('click', function () {
+  const navLinks = document.getElementById('nav-links');
+  navLinks.classList.toggle('show'); // Toggle visibility
+});
