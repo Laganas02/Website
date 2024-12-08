@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Array of book titles
+/* // Array of book titles
 const randomBookTitles = [
   "Training to Love",
   "A Different Virus",
@@ -103,8 +103,8 @@ const randomBookTitles = [
   "The Mysterious Salvation",
   "Money Isn't Everything...",
   "Rich Bae, Rich Love",
-];
-
+]; 
+*/
 function pickRandomBook(elementId) {
   const randomIndex = Math.floor(Math.random() * randomBookTitles.length);
   document.getElementById(elementId).textContent =
