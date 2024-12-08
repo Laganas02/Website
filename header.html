@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header Example</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="mediaqueries.css">
 </head>
 <body>
     <header>
@@ -12,23 +12,22 @@
             <div class="logo">
                 <img src="logo.png" alt="Logo">
             </div>
-            <div class="nav-links">
+            <!-- Hamburger Icon -->
+            <div class="hamburger" id="hamburger">
+                &#9776; <!-- Unicode for hamburger menu -->
+            </div>
+            <div class="nav-links" id="nav-links">
                 <div class="dropdown">
                     <a href="#">Browse</a>
                     <div class="dropdown-content">
                         <div class="dropdown-column">
                             <a href="#">Romance</a>
-                            <a href="#">Fanfiction</a>
-                            <a href="#">Historical</a>
-                            <a href="#">Humor</a>
                             <a href="#">Non-Fiction</a>
                             <a href="#">Horror</a>
                             <a href="#">Mystery</a>
                             <a href="#">Poetry</a>
                             <a href="#">Fantasy</a>
                             <a href="#">Teenfiction</a>
-                            <a href="#">Matured</a>
-                            <a href="#">Thriller</a>
                         </div>
                     </div>
                 </div>
@@ -55,6 +54,6 @@
             </div>
         </div>
     </header>
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>

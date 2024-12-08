@@ -443,3 +443,31 @@ body {
 .auth-box a:hover {
     text-decoration: underline;
 }
+
+/* Hide the navigation links initially for small screens */
+.nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #fff;
+    position: absolute;
+    top: 60px; /* Adjust as per your header height */
+    right: 0;
+    width: 100%;
+}
+
+/* Show hamburger menu only on smaller screens */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links.show {
+        display: flex; /* Show the navigation links when active */
+    }
+}
