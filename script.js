@@ -23,7 +23,7 @@ const headerHTML = `
                         <a href="genre_poetry.html">Poetry</a>
                         <a href="genre_fantasy.html">Fantasy</a>
                         <a href="genre_teenfiction.html">Teenfiction</a>
-                        <a href="genre_matured.html">Matured</a>
+                        <a href="genre_Psychology.html">Psychology</a>
                         <a href="genre_thriller.html">Thriller</a>
                     </div>
                 </div>
